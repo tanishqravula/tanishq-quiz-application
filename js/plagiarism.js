@@ -1,20 +1,36 @@
-document.addEventListener('contextmenu', function (e) {
+        document.addEventListener('contextmenu', function (e) {
             e.preventDefault();
+            if (!plagiarismDetected) {
+                alert('Plagiarism detected: Right-clicking is not allowed.');
+                plagiarismDetected = true; // Set the flag to true
+            }
         });
 
         // Disable copy-paste
         document.addEventListener('copy', function (e) {
             e.preventDefault();
+            if (!plagiarismDetected) {
+                alert('Plagiarism detected: Copying is not allowed.');
+                plagiarismDetected = true; // Set the flag to true
+            }
         });
 
         document.addEventListener('paste', function (e) {
             e.preventDefault();
+            if (!plagiarismDetected) {
+                alert('Plagiarism detected: Pasting is not allowed.');
+                plagiarismDetected = true; // Set the flag to true
+            }
         });
 
         // Disable keyboard shortcuts (Ctrl+C, Ctrl+X, Ctrl+V)
         document.addEventListener('keydown', function (e) {
             if ((e.ctrlKey || e.metaKey) && (e.key === 'c' || e.key === 'x' || e.key === 'v')) {
                 e.preventDefault();
+                if (!plagiarismDetected) {
+                    alert('Plagiarism detected: Keyboard shortcuts are not allowed.');
+                    plagiarismDetected = true; // Set the flag to true
+                }
             }
         });
 
@@ -51,5 +67,7 @@ document.addEventListener('contextmenu', function (e) {
 
         // Restrict opening new tabs or windows
         window.onbeforeunload = function () {
-            return "Are you sure you want to leave this exam?";
+            if (!plagiarismDetected) {
+                return "Plagiarism detected: Are you sure you want to leave this exam?";
+            }
         };
